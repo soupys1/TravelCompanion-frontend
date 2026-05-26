@@ -262,7 +262,7 @@ export default function ChatInterface() {
 
   function handleClick() {
     setStreamedText(""); setActiveTab('stream')
-    const socket = new WebSocket("wss:https://travelcompanion-backend.onrender.com/ws")
+    const socket = new WebSocket("wss://travelcompanion-backend.onrender.com/ws")
     socket.addEventListener("message", e => { if (e.data !== "[DONE]") setStreamedText(p => p + e.data) })
     socket.onopen = () => socket.send(trip)
   }
