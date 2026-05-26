@@ -262,7 +262,7 @@ export default function ChatInterface() {
 
   function handleClick() {
     setStreamedText(""); setActiveTab('stream')
-    const socket = new WebSocket("ws://localhost:8000/ws")
+    const socket = new WebSocket("wss:https://travelcompanion-backend.onrender.com/ws")
     socket.addEventListener("message", e => { if (e.data !== "[DONE]") setStreamedText(p => p + e.data) })
     socket.onopen = () => socket.send(trip)
   }
@@ -272,7 +272,7 @@ export default function ChatInterface() {
     const imgs = await fetchPexels(extractKeyword(trip), 5)
     setHeroImages(imgs); setHeroIdx(0)
     try {
-      const res = await fetch("http://localhost:8000/plan", {
+      const res = await fetch("https://travelcompanion-backend.onrender.com/plan", {
         method: "POST", headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ user_input: trip }),
       })
